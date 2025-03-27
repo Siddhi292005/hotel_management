@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Hotel from "./hotel"
 
 const Hero = () => {
   const [location, setLocation] = useState('');
@@ -7,8 +8,14 @@ const Hero = () => {
   const [adults, setadults]=useState('');
   const [children, setchildren]=useState('');
   const [rooms, setrooms]=useState('');
+  const [searchtriggered, setsearchtriggered]= useState(false);
   const handleSearch = () => {
-    console.log('Searching hotels for:', { location, checkInDate, checkOutDate });
+    if(!location)
+    {
+      alert("PLease enter a location");
+      return;
+    }
+    setsearchtriggered(true);
   };
 
   return (
@@ -83,7 +90,9 @@ const Hero = () => {
           >
             Search
           </button>
+           
         </div>
+        <Hotel location={location} searchtriggered={searchtriggered}/>
       </div>
     </div>
   );
